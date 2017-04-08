@@ -2,10 +2,13 @@
  * Created by liliwen on 2017/4/8.
  */
 'use strict';
-global.rootPath = __dirname;
+// global.rootPath = require('path').resolve('./');
 const
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
+
+console.log('webpack config');
+console.log(rootPath);
 
 /**
  * webpack配置
