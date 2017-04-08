@@ -5,10 +5,14 @@
 global.rootPath = require('path').resolve('./');
 const
     webpack = require('webpack'),
-    webpackConfig = require(`${rootPath}/toolkit/webpack/dev-config.js`),
+    webpackConfig = require(`${rootPath}/toolkit/webpack/dev-config`),
+    jsonServer = require(`${rootPath}/toolkit/json-server`),
     express = require('express'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require("webpack-hot-middleware");
+
+/**参数配置*/
+const port = 3030;
 
 //构建应用服务器
 const app = express();
@@ -34,6 +38,8 @@ app.use(webpackDevMiddleware(compiler, {
 /**加入HMR中间件*/
 app.use(webpackHotMiddleware(compiler));
 
+jsonServer();
+
 /**开启服务*/
-app.listen(3030);
-console.log('dev server is starting up on port 3030！');
+app.listen(port);
+console.log(`dev server is starting up on port ${port}！`);

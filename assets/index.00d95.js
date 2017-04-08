@@ -777,7 +777,7 @@ function placeHoldersCount (b64) {
 }
 
 function byteLength (b64) {
-  // base64 is 4/3 + up to two characters of the original data
+  // base64 is 4/3 + up to two characters of the original mock-data
   return b64.length * 3 / 4 - placeHoldersCount(b64)
 }
 
@@ -2742,7 +2742,7 @@ function cssWithMappingToString(item, useSourceMap) {
 // Adapted from convert-source-map (MIT)
 function toComment(sourceMap) {
   var base64 = new Buffer(JSON.stringify(sourceMap)).toString('base64');
-  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  var data = 'sourceMappingURL=mock-data:application/json;charset=utf-8;base64,' + base64;
 
   return '/*# ' + data + ' */';
 }
@@ -3121,7 +3121,7 @@ function updateLink(linkElement, options, obj) {
 
 	if(sourceMap) {
 		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		css += "\n/*# sourceMappingURL=mock-data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
 	}
 
 	var blob = new Blob([css], { type: "text/css" });
@@ -3141,7 +3141,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * When source maps are enabled, `style-loader` uses a link element with a mock-data-uri to
  * embed the css on the page. This breaks all relative urls because now they are relative to a
  * bundle instead of the current page.
  *
