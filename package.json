@@ -4,7 +4,9 @@
   "description": "this framework is set up for wechat dev",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "babel-node toolkit/dev-server",
+    "test": "webpack --config toolkit/webpack/test-config.js",
+    "prod": "webpack --config toolkit/webpack/prod-config.js"
   },
   "author": "llw",
   "license": "ISC",

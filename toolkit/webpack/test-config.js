@@ -2,13 +2,10 @@
  * Created by liliwen on 2017/4/8.
  */
 'use strict';
-// global.rootPath = require('path').resolve('./');
+global.rootPath = require('path').resolve('./');
 const
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
-
-console.log('webpack config');
-console.log(rootPath);
 
 /**
  * webpack配置
@@ -89,10 +86,7 @@ const config = {
             filename: `${rootPath}/assets/index.html`,//指定输出位置
             hash: true,
             chunks: ['index']//为视图指定js和css，名字在entry中选一个或多个
-        }),
-        //hot module replace plugins
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        })
     ],
     /**import/require引入文件方式配置*/
     resolve: {
