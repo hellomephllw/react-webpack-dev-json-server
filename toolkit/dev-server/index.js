@@ -38,7 +38,13 @@ app.use(webpackDevMiddleware(compiler, {
 /**加入HMR中间件*/
 app.use(webpackHotMiddleware(compiler));
 
-jsonServer();
+/**加入json服务：json文件模式*/
+jsonServer.buildJsonFileMode().forEach(jsonFileMappingObj => {
+    app.all(jsonFileMappingObj.getUrl(), (req, res) => {
+        res.set('Access-Control-Allow-Origin', '*');
+        res.send(jsonFileMappingObj.getJson());
+    });
+});
 
 /**开启服务*/
 app.listen(port);
